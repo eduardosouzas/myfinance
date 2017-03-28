@@ -1,0 +1,6 @@
+'pt-BR':
+  enums:
+    account:
+      type:
+        bank: Banco
+        crediCard: Cartão de Crédito

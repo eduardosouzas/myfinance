@@ -1,0 +1,47 @@
+<!-- Modal -->
+<%= form_tag accounts_path, remote: true do %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nova Conta</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                <label>Nome:</label>
+                <%=  text_field( :account,:name , class:"form-control" )%>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                      <div class="col-xs-6">
+                           <label>Tipo conta:</label>
+                             <%= collection_select :account,:type, options_for_types, :id, :description, {:prompt => true} , {:class=>"form-control" } %>
+                      </div>
+                      <div class="col-xs-2">
+                             <div   id="day" style="display: none;">
+                                  <label>Dia Venc.:</label>
+                                  <%=  text_field( :account,:day_cut , class:"form-control" )%>
+                              </div>
+                      </div>
+              </div>
+          </div>
+          <div class="row">
+                <div class="col-xs-6">
+                             <label>Saldo Inicial:</label>
+                                 <div class="input-group">
+                                          <div class="input-group-addon"><%= @account.balance.currency.symbol %></div>
+                                            <%= text_field( :account,:balance , class:"form-control text-right" )%>
+                                 </div>
+                   </div>
+           </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+

@@ -16,3 +16,13 @@
 //= require bootbox.js
 //= require bootstrap.growl
 //= require_tree .
+
+$(document).ready(function($) {
+  $("#account_type").on("change",function(event){
+      if($(this).val() === 'bank' ) {
+          $("#day").hide();
+      } else {
+          $("#day").show();
+      }
+  });
+});

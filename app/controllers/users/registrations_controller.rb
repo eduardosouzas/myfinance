@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         build_resource({})
         resource.build_profile_user
         respond_with self.resource
-        @chave = resource
+        @chave = "olá"
     end
 
     protected
