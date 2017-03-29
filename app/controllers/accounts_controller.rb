@@ -1,15 +1,26 @@
 class AccountsController < ApplicationController
+    before_action :set_account, only: [:destroy]
 
     def index
-            @account = Account.new
-            @accounts = Account.where(user: current_user)
+        set_index
+
+    end
+
+    def destroy
+        if @account.destroy
+            set_index
+            @notice = "Conta excluir com sucesso"
+            respond_to do |format|
+              format.js
+            end
+        end
     end
 
     def create
       @account = Account.new(params_account)
 
       if @account.save
-          index
+         set_index
          @notice =  "Conta #{@account.name} adicionada com sucesso "
          respond_to do |format|
              format.js
@@ -22,6 +33,15 @@ class AccountsController < ApplicationController
 
 
     private
+
+        def set_account
+          @account = Account.find(params[:id])
+        end
+
+        def set_index
+            @account = Account.new
+            @accounts = Account.where(user: current_user)
+        end
 
         def params_account
                 params.require(:account).permit(:name, :account_type, :balance, :day_cut,:user_id)
