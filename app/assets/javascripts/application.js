@@ -15,6 +15,7 @@
 //= require bootstrap_sb_admin_base_v2
 //= require bootbox.js
 //= require bootstrap.growl
+//= require wiselinks
 //= require_tree .
 
 $(document).ready(function($) {
@@ -25,4 +26,12 @@ $(document).ready(function($) {
           $("#day").show();
       }
   });
+   window.wiselinks = new Wiselinks($('#home'));
+
+   $(document).ajaxStart(function () {
+        $('#global-spin').fadeIn('slow');
+    }).ajaxStop(function () {
+        $('#global-spin').fadeOut('slow');
+    });
+
 });
