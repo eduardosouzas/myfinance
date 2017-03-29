@@ -19,7 +19,7 @@
 //= require_tree .
 
 $(document).ready(function($) {
-  $("#account_type").on("change",function(event){
+  $("#account_account_type").on("change",function(event){
       if($(this).val() === 'bank' ) {
           $("#day").hide();
       } else {
@@ -32,6 +32,8 @@ $(document).ready(function($) {
         $('#global-spin').fadeIn('slow');
     }).ajaxStop(function () {
         $('#global-spin').fadeOut('slow');
+    }).ajaxComplete(function(event, xhr, settings) {
+       $(".modal-backdrop").remove();
     });
 
 });

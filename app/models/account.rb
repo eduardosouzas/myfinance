@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
      belongs_to :user
-     TYPES = {:bank => 0, :crediCard => 1}
-     enum type: TYPES
+
+     enum account_type: [:bank , :crediCard ]
 
      monetize :balance_cents
 end

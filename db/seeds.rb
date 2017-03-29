@@ -6,4 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-    User.create!(email: 'user@user.com', password:'123456')
+    puts "Cadastrando o Usuario Padrão..."
+
+    user = User.new(
+      email: "membro@membro.com",
+      password: "123456",
+      password_confirmation: "123456"
+    )
+
+      user.build_profile_user
+
+      user.profile_user.first_name = Faker::Name.first_name
+      user.profile_user.second_name = Faker::Name.last_name
+
+      user.save!
+
+      puts "Usuario cadastrado com sucesso!"

@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :name
       t.integer :balance_cents, default:0
       t.integer :day_cut
-      t.integer :type
+      t.integer :account_type
 
       t.timestamps null: false
     end

@@ -1,5 +1,6 @@
 <!-- Modal -->
-<%= form_tag accounts_path, remote: true do %>
+<%= form_tag accounts_path, remote: true  do %>
+<%= hidden_field(:account,:user_id, :value => current_user.id ) %>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -16,7 +17,7 @@
                 <div class="row">
                       <div class="col-xs-6">
                            <label>Tipo conta:</label>
-                             <%= collection_select :account,:type, options_for_types, :id, :description, {:prompt => true} , {:class=>"form-control" } %>
+                             <%= collection_select :account,:account_type, options_for_account_types, :id, :description, {:prompt => true} , {:class=>"form-control" } %>
                       </div>
                       <div class="col-xs-2">
                              <div   id="day" style="display: none;">
