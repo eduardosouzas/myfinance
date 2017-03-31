@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  favored: MyString
+  value: 1
+  type_transaction: 1
+  category_id: 
+  account_id: 
+
+two:
+  favored: MyString
+  value: 1
+  type_transaction: 1
+  category_id: 
+  account_id: 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330223257) do
+ActiveRecord::Schema.define(version: 20170331165058) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 20170330223257) do
   end
 
   add_index "profile_users", ["user_id"], name: "index_profile_users_on_user_id"
+
+  create_table "transactions", force: :cascade do |t|
+    t.string   "favored"
+    t.integer  "value_cents",      default: 0
+    t.integer  "type_transaction"
+    t.date     "date_transaction"
+    t.integer  "category_id"
+    t.integer  "account_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "transactions", ["account_id"], name: "index_transactions_on_account_id"
+  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

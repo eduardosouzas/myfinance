@@ -12,10 +12,11 @@
 
  *= require font-awesome
  *= require bootstrap_sb_admin_base_v2
-  *= require_tree .
+ *= require jquery-ui
+ *= require_tree .
  *= require_self
  */
-data-notify="progressbar"] {
+data-notify=["progressbar"] {
     margin-bottom: 0px;
     position: absolute;
     bottom: 0px;

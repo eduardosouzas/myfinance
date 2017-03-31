@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'}
   resources :accounts
   resources :categories
+  resources :transactions
 
   root 'accounts#index'
 

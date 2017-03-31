@@ -1,0 +1,83 @@
+<h1 class="page-header">Transação
+<button type="button" class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myCategory">
+    Nova Transação
+</button>
+</h1>
+<div class="row">
+<div class="col-lg-6">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          Listando Transação
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Favorecido</th>
+                          <th>Tipo</th>
+                          <th>Conta</th>
+                          <th>Categoria</th>
+                          <th>Data</th>
+                          <th>Valor</th>
+                          <th>Ações</th>
+                      </tr>
+                  </thead>
+                  <tbody id="tb_category">
+                  <% @transactions.each do |t| %>
+                      <tr id='<%= t.id %>'>
+                          <td><%= t.id %></td>
+                          <td><%= t.favored %></td>
+                          <td><%= t.type_transaction_i18n %></td>
+                          <td><%= t.account.name %></td>
+                          <td><%= t.category.name %></td>
+                          <td><%= t.date_transaction %></td>
+                          <td><%= humanized_money_with_symbol t.value_cents %></td>
+                          <td>
+                          <%= link_to edit_transaction_path(t), class:"btn btn-primary btn-circle" do %>
+                            <i class="fa fa-list"></i>
+                          <% end%>
+                          <%= link_to transaction_path(t), remote:true ,data: {confirm: ' Vc realmente deseja excluir essa transação'}, method: :delete ,class:"btn btn-danger btn-circle" do %>
+                            <i class="fa fa-times"></i>
+                          <% end%>
+
+
+                          </td>
+                      </tr>
+
+                  <% end %>
+                  </tbody>
+              </table>
+          </div>
+          <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+  </div>
+  <!-- /.panel -->
+</div>
+</div>
+<%= form_tag categories_path, remote: true  do %>
+<%= hidden_field(:category,:user_id, :value => current_user.id ) %>
+<div class="modal fade" id="myCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                <label>Nome:</label>
+                <%=  text_field( :category,:name , class:"form-control" )%>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

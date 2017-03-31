@@ -4,3 +4,7 @@
       account_type:
         bank: Banco
         crediCard: Crédito
+    transaction:
+      type_transaction:
+          expense: Dispesa
+          income: Renda
