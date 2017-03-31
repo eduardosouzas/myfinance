@@ -17,32 +17,31 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(params_account)
-
-  if @account.save
-    set_index
-    @notice =  "Conta #{@account.name} adicionada com sucesso "
-    respond_to do |format|
+    if @account.save
+      set_index
+      @notice =  "Conta #{@account.name} adicionada com sucesso "
+      respond_to do |format|
         format.js
+      end
+    else
+      render :index, alert: "Conta #{@account.name} adicionada com sucesso "
     end
-  else
-    render :index, alert: "Conta #{@account.name} adicionada com sucesso "
-  end
 
   end
 
 
-private
+  private
 
   def set_account
     @account = Account.find(params[:id])
   end
 
   def set_index
-      @account = Account.new
-      @accounts = Account.where(user: current_user)
+    @account = Account.new
+    @accounts = Account.where(user: current_user)
   end
 
   def params_account
-          params.require(:account).permit(:name, :account_type, :balance, :day_cut,:user_id)
+    params.require(:account).permit(:name, :account_type, :balance, :day_cut,:user_id)
   end
 end

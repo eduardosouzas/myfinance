@@ -1,0 +1,17 @@
+ <% unless @category.id.blank? %>
+ $("#myCategory").modal("toggle");
+  $("#tb_category").append("<tr id='<%= @category.id %>'>"+
+                          "<td><%= @category.id %></td>"+
+                          "<td><%= @category.name %></td>"+
+                          "<td><a class='btn btn-primary btn-circle' href='/categories/<%= @category.id %>/edit'>"+
+                            "<i class='fa fa-list'></i>"+
+                          "</a>"+
+                          "<a class='btn btn-danger btn-circle' data-confirm='Vc realmente deseja excluir a categoria  <%= @category.name %>' rel='nofollow' data-remote='true' data-method='delete' href='/categories/<%= @category.id %>' >"+
+                          "<i class='fa fa-times'></i>"+
+                          "</a>"+
+                          "</td></tr>");
+
+    $.notify( { message: '<%= @notice %>'}, { type: 'success', placement: { from: 'top', align: 'center' }});
+    <% else  %>
+    $.notify( { message: '<%= @notice %>'}, { type: 'danger', placement: { from: 'top', align: 'center' }});
+    <% end %>

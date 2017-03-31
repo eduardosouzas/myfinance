@@ -1,0 +1,6 @@
+<% if @category.destroyed? %>
+  $("#<%=@category.id  %>").remove();
+  $.notify( { message: '<%= @notice %>'}, { type: 'success', placement: { from: 'top', align: 'center' }});
+<% else %>
+  $.notify( { message: '<%= @notice %>'}, { type: 'danger', placement: { from: 'top', align: 'center' }});
+<% end %>

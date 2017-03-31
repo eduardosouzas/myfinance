@@ -1,9 +1,13 @@
-<h1 class="page-header">Categoria</h1>
+<h1 class="page-header">Categoria
+<button type="button" class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myCategory">
+    Nova Categoria
+</button>
+</h1>
 <div class="row">
 <div class="col-lg-6">
   <div class="panel panel-default">
       <div class="panel-heading">
-          Hover Rows
+          Listando Categoria
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
@@ -16,16 +20,16 @@
                           <th>Ações</th>
                       </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tb_category">
                   <% @categories.each do |cat| %>
-                      <tr>
+                      <tr id='<%= cat.id %>'>
                           <td><%= cat.id %></td>
                           <td><%= cat.name %></td>
                           <td>
                           <%= link_to edit_category_path(cat), class:"btn btn-primary btn-circle" do %>
                             <i class="fa fa-list"></i>
                           <% end%>
-                          <%= link_to category_path(cat), method: :delete ,class:"btn btn-danger btn-circle" do %>
+                          <%= link_to category_path(cat), remote:true ,data: {confirm: ' Vc realmente deseja excluir a categoria'}, method: :delete ,class:"btn btn-danger btn-circle" do %>
                             <i class="fa fa-times"></i>
                           <% end%>
 
@@ -44,3 +48,27 @@
   <!-- /.panel -->
 </div>
 </div>
+<%= form_tag categories_path, remote: true  do %>
+<%= hidden_field(:category,:user_id, :value => current_user.id ) %>
+<div class="modal fade" id="myCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nova Categoria</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                <label>Nome:</label>
+                <%=  text_field( :category,:name , class:"form-control" )%>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
