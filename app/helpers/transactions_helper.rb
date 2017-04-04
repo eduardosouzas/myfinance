@@ -1,6 +1,5 @@
 # Helper for class transactions
 module TransactionsHelper
-
   OptionsForTransactionsTypes = Struct.new(:id, :description)
 
   def select_for_options_categories
@@ -15,5 +14,17 @@ module TransactionsHelper
     Transaction.type_transactions_i18n.map do |key, value|
       OptionsForTransactionsTypes.new(key, value)
     end
+  end
+
+  def sum_transacation(transactions)
+    @sum = 0
+    transactions.each do |t|
+      @sum = if t.type_transaction == :expense
+               @sum + t.value
+             else
+               @sum - t.value
+             end
+    end
+   @sum.abs
   end
 end

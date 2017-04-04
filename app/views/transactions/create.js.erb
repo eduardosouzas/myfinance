@@ -1,5 +1,5 @@
 <% unless @transaction.id.blank? %>
-$("#div_table").html("<%= j render partial: 'transactions/shared/index'  %>");
-$("#myTransaction").modal('close')
- $.notify( { message: '<%= @notice %>'}, { type: 'success', placement: { from: 'top', align: 'center' }});
+  $("#div_table").html("<%= j render partial: 'transactions/shared/index' %>");
+  $("#myTransaction").modal('toggle');
+  $.notify( { message: '<%= @notice %>'}, { type: 'success', placement: { from: 'top', align: 'center' }});
 <% end %>
