@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui/i18n/datepicker-pt-BR
 //= require bootstrap_sb_admin_base_v2
 //= require bootbox.js
 //= require bootstrap.growl
@@ -20,6 +21,9 @@
 //= require_tree .
 
 $(document).ready(function($) {
+   $(".datepicker").datepicker({
+    format: 'dd/mm/yyyy'
+    });
   $("#account_account_type").on("change",function(event){
       if($(this).val() === 'bank' ) {
           $("#day").hide();

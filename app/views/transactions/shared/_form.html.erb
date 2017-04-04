@@ -1,0 +1,59 @@
+<%= form_tag transactions_path, remote: true  do %>
+<div class="modal fade" id="myTransaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nova Transação</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12">
+                      <label>Favorecido:</label>
+                      <%=  text_field( :transaction ,:favored , class:"form-control" )%>
+                  </div>
+                </div>
+             </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                    <label>Categoria:</label>
+                        <%= collection_select :transaction,:category_id, select_for_options_categories, :id, :name, {:prompt => true} , {:class=>"form-control" } %>
+                    </div>
+                    <div class="col-xs-6">
+                      <label>Tipos:</label>
+                      <%= collection_select :transaction,:type_transaction, options_for_account_types, :id, :description, {:prompt => true} , {:class=>"form-control" } %>
+                    </div>
+                </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+                <div class="col-xs-6">
+                      <label>Data:</label>
+                      <%=  text_field( :transaction ,:date_transaction , class:"form-control datepicker" )%>
+                </div>
+                <div class="col-xs-6">
+                      <label>Conta:</label>
+ <%= collection_select :transaction,:account_id, select_for_options_accounts, :id, :name, {:prompt => true} , {:class=>"form-control" } %>
+                </div>
+            </div>
+            </div>
+              <div class="row">
+                <div class="col-xs-6">
+                <label>Valor:</label>
+              <div class="form-group input-group">
+                      <span class="input-group-addon">R<i class="fa fa-dollar"></i></span>
+                      <%=  text_field( :transaction ,:value , class:"form-control" )%>
+                </div>
+                </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
