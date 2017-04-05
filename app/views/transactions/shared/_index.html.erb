@@ -3,7 +3,6 @@
         <tr>
             <th>#</th>
             <th>Favorecido</th>
-            <th>Tipo</th>
             <th>Conta</th>
             <th>Categoria</th>
             <th>Data</th>
@@ -16,11 +15,16 @@
         <tr id='<%= t.id %>'>
             <td><%= t.id %></td>
             <td><%= t.favored %></td>
-            <td><%= t.type_transaction_i18n %></td>
             <td><%= t.account.name %></td>
             <td><%= t.category.name %></td>
             <td><%= l t.date_transaction %></td>
-            <td class="text-right"><%= humanized_money_with_symbol t.value %></td>
+            <td class="text-right">
+                <% if t.type_transaction == 'expense' %>
+                    <i class="fa fa-minus-circle"></i>
+                <% else %>
+                    <i class="fa fa-plus-circle"></i>
+                <%  end %>
+            <%= humanized_money_with_symbol t.value %></td>
             <td class="text-right">
             <%= link_to edit_transaction_path(t), class:"btn btn-primary btn-circle" do %>
             <i class="fa fa-list"></i>
@@ -32,9 +36,11 @@
         </tr>
     <% end %>
     <tr >
-        <td colspan="6"></td>
-        <td class="text-right">Total:R$ <%= sum_transacation @transactions %></td>
+        <td >Total:</td>
+        <td colspan="4"></td>
+        <td class="text-right"><%= humanized_money_with_symbol sum_transacation @transactions %></td>
         <td ></td>
     </tr>
     </tbody>
 </table>
+<%= navigation_months(@month) %>

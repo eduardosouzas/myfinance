@@ -32,15 +32,19 @@ class TransactionsController < ApplicationController
   end
 
   def params_index
-    if params[:month].blank?
-      @date_initial = Date.new(Time.now.year, Time.now.month, 1)
-      @date_final = Date.new(Time.now.year, Time.now.month, 30)
-    else
-      @date_initial = Date.new(Time.now.year, params[:month], 1)
-      @date_final = Date.new(Time.now.year, params[:month], 30)
-   end
-    @account_id = params[:account_id].blank? ? current_user.accounts[0].id :
-                                               params[:account_id]
+    @date = Time.zone.now
+    @month = if params[:month].blank?
+               @date.month
+             else
+               params[:month]
+             end
+    @date_initial = Date.new(@date.year, @date.month, 1)
+    @date_final = Date.new(@date.year, @date.month, 30)
+    @account_id = if params[:account_id].blank?
+                    current_user.accounts[0].id
+                  else
+                    params[:account_id]
+                  end
     @transactions = Transaction.between_month(@date_initial, @date_final,
                                               @account_id)
   end
