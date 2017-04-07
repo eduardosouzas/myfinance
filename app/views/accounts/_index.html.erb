@@ -24,7 +24,14 @@
                 <a href="#">
                     <div class="panel-footer">
                         <span class="pull-left"><%= humanized_money_with_symbol  account.balance  %></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <span class="pull-right">
+                        <%= link_to account_path(account), remote: true  do %>
+                              <span class="pull-right" style="margin-right: 5px;">
+                                        <i class="fa fa-arrow-circle-right"></i></span>
+                              </span>
+                        <% end %>
+
+
                        <%= link_to account_path(account), method: :delete, remote: true, data: {confirm: ' Vc realmente deseja excluir a conta  account.name'}  do %>
                               <span class="pull-right" style="margin-right: 5px;">
                                         <i class="fa fa-trash-o"></i>
