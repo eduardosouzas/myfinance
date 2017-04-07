@@ -1,0 +1,24 @@
+<h1 class="page-header">Transação
+<button type="button" class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myTransaction">
+    Nova Transação
+</button>
+</h1>
+<div class="row">
+<div class="col-lg-12">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          Listando Transação
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+         <div class="table-responsive" id="div_table">
+                    <%= render partial: 'transactions/shared/index' %>
+          </div>
+          <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+  </div>
+  <!-- /.panel -->
+</div>
+</div>
+ <%= render partial: 'transactions/shared/form' %>

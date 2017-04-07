@@ -7,6 +7,14 @@ class TransactionsController < ApplicationController
 
   def show; end
 
+  def pagination
+    params_index
+    @transaction = Transaction.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @transaction = Transaction.new(params_transaction)
 
@@ -31,21 +39,30 @@ class TransactionsController < ApplicationController
                                         :date_transaction, :value)
   end
 
-  def params_index
+  def set_month
     @date = Time.zone.now
     @month = if params[:month].blank?
                @date.month
              else
                params[:month]
              end
-    @date_initial = Date.new(@date.year, @date.month, 1)
-    @date_final = Date.new(@date.year, @date.month, 30)
-    @account_id = if params[:account_id].blank?
-                    current_user.accounts[0].id
-                  else
-                    params[:account_id]
-                  end
+  end
+
+  def set_account_id
+    set_month
+    account_id = if params[:transaction][:account_id].blank?
+                   current_user.accounts[0].id
+                 else
+                   params[:transaction][:account_id]
+                 end
+    @account = Account.find(account_id)
+  end
+
+  def params_index
+    set_account_id
+    @date_initial = Date.new(@date.year, @month.to_i, 1)
+    @date_final = Date.new(@date.year, @month.to_i, @month.to_i == 2 ? 28 : 30)
     @transactions = Transaction.between_month(@date_initial, @date_final,
-                                              @account_id)
+                                              @account.id)
   end
 end

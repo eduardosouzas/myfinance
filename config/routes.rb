@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'home/home'
+  post 'transactions/pagination'
 
   devise_for :users, controllers:{
     sessions: 'users/sessions',

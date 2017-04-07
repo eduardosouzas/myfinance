@@ -1,8 +1,21 @@
 <h1 class="page-header">Transação
+
 <button type="button" class="btn btn-primary  pull-right" data-toggle="modal" data-target="#myTransaction">
     Nova Transação
 </button>
 </h1>
+<div class="row">
+    <div class="col-md-6">
+
+        <%= form_tag transactions_pagination_path, remote: true , id:"pagination"  do %>
+            <%= hidden_field_tag :month  %>
+             <label>Conta:</label>
+            <%= collection_select :transaction,:account_id, select_for_options_accounts, :id, :name, {:include_blank => 'Favor selecione uma conta', :selected=> @account.id } , {:class=>"form-control" } %>
+        <% end %>
+
+   </div>
+</div>
+</br>
 <div class="row">
 <div class="col-lg-12">
   <div class="panel panel-default">
@@ -22,3 +35,19 @@
 </div>
 </div>
  <%= render partial: 'transactions/shared/form' %>
+
+<script lang="javascript" type="text/javascript">
+
+    function pagination(month) {
+        $("#month").val(month);
+        $("#pagination").submit();
+    }
+
+    $(document).ready(function(){
+         $("#transaction_account_id").delegate("change", function(){
+             $("#month").val(month);
+            $("#pagination").submit();
+         });
+
+    });
+</script>
