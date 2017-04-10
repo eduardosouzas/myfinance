@@ -11,8 +11,10 @@
  * file per style scope.
 
  *= require font-awesome
- *= require bootstrap_sb_admin_base_v2
  *= require jquery-ui
+ *= require mara/material-design-iconic-font
+ *= require mara/mara.min
+ *= require mara/prism
  *= require_tree .
  *= require_self
  */

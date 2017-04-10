@@ -14,10 +14,11 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-ui/i18n/datepicker-pt-BR
-//= require bootstrap_sb_admin_base_v2
 //= require bootbox.js
 //= require bootstrap.growl
 //= require wiselinks
+//= require mara/materialize.js
+//= require mara/mara.min
 //= require_tree .
 
 $(document).ready(function($) {
